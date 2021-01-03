@@ -95,7 +95,7 @@ oc expose svc/${APP_NAME}
 
         stage('Wait for deployment in DEV env') {
             //TODO: Watch deployment until pod is in 'Running' state
-
+steps {
                 script {
                     openshift.withCluster() {
                         openshift.withProject( "${DEV_PROJECT}" ) {
@@ -106,6 +106,7 @@ oc expose svc/${APP_NAME}
                         echo "Deployment to Staging env is complete. Access the API endpoint at the URL http://${routeHost}/movies."
                     }
                 }
+}
         }
 
         stage('Promote to Staging Env') {
